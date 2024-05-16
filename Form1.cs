@@ -15,6 +15,9 @@ namespace SchoolProjectC_
     {
         private Point pos;
         private bool dragging, lose = false;
+        private int countCoins = 0;
+        int bgspeed = 5;
+        int carspeed = 7;
         public Form1()
         {
             
@@ -61,13 +64,22 @@ namespace SchoolProjectC_
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            int speed = 5;
-            bg1.Top += speed;
-            bg2.Top += speed;
+           // int speed = 5;
+            bg1.Top += bgspeed;
+            bg2.Top += bgspeed;
 
-            int carspeed = 7;
+           // int carspeed = 7;
             enemy1.Top += carspeed;
             enemy2.Top += carspeed;
+
+            coin.Top += bgspeed;
+
+            if (coin.Top >= 650)
+            {
+                coin.Top = -50;
+                Random rnd = new Random();
+                coin.Left = rnd.Next(150, 560);
+            }
 
             if (bg1.Top >= 650)
             {
@@ -80,13 +92,13 @@ namespace SchoolProjectC_
             {
                enemy1.Top -= 670;
                 Random rnd = new Random();
-                enemy1.Left = rnd.Next(150, 300);
+                enemy1.Left = rnd.Next(134, 306);
             }
             if (enemy2.Top >= 650) 
             {
                 enemy2.Top -=800;
                 Random rnd = new Random();
-                enemy2.Left = rnd.Next(300, 550);
+                enemy2.Left = rnd.Next(306, 582);
             }
 
             if (car.Bounds.IntersectsWith(enemy1.Bounds) 
@@ -102,6 +114,14 @@ namespace SchoolProjectC_
             if (enemy1.Top >= 650) enemy1.Top = -130;
             if (enemy2.Top >= 650) enemy2.Top = -400;
 
+            if (car.Bounds.IntersectsWith(coin.Bounds))
+            {
+                countCoins++;
+                labelCoins.Text ="Coins :" + countCoins.ToString();
+                coin.Top = -50;
+                Random rnd = new Random();
+                coin.Left = rnd.Next(150, 560);
+            }
 
         }
 
@@ -124,6 +144,9 @@ namespace SchoolProjectC_
             Restart.Visible=false;
             timer.Enabled = true;
             lose = false;
+            countCoins= 0;
+            labelCoins.Text = "Coins :" + countCoins.ToString();
+            coin.Top = -500;
         }
     }
 }
