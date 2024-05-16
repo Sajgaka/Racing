@@ -16,8 +16,9 @@ namespace SchoolProjectC_
         private Point pos;
         private bool dragging, lose = false;
         private int countCoins = 0;
-        int bgspeed = 5;
-        int carspeed = 7;
+        int bgspeed = 0;
+        int carspeed = 0;
+        int herospeed = 0;
         public Form1()
         {
             
@@ -108,11 +109,13 @@ namespace SchoolProjectC_
                 LabelLose.Visible = true;
                 Restart.Visible = true;
                 lose = true;
-            }
-             
+                labelChoose.Visible = true;
+                Easy.Visible = true;
+                Hard.Visible = true;
 
-            if (enemy1.Top >= 650) enemy1.Top = -130;
-            if (enemy2.Top >= 650) enemy2.Top = -400;
+            }
+            
+           
 
             if (car.Bounds.IntersectsWith(coin.Bounds))
             {
@@ -128,25 +131,54 @@ namespace SchoolProjectC_
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (lose) return;
-            int speed = 10;
+            
             if ((e.KeyCode == Keys.Left  || e.KeyCode== Keys.A) && car.Left>125)
-             car.Left -= speed;
+             car.Left -= herospeed;
 
             else if ((e.KeyCode == Keys.Right || e.KeyCode == Keys.D) && car.Right < 750)
-                car.Left +=speed;
+                car.Left +=herospeed;
+        }
+
+        private void Easy_Click(object sender, EventArgs e)
+        {
+            Restart_Click(sender, e);
+            labelChoose.Visible = false;
+            Easy.Visible = false;
+            Hard.Visible = false;
+            timer.Enabled = true;
+            carspeed = 10;
+            herospeed = 20;
+            bgspeed = 10;
+        }
+
+        private void Hard_Click(object sender, EventArgs e)
+        {
+            Restart_Click((object)sender, e);
+            labelChoose.Visible = false;
+            Hard.Visible = false;
+            Easy.Visible = false;
+            timer.Enabled = true;
+            carspeed =20;
+            herospeed = 13;
+            bgspeed = 20;
         }
 
         private void Restart_Click(object sender, EventArgs e)
         {
-            enemy1.Top = -130;
-            enemy2.Top = -400;
-            LabelLose.Visible = false;
-            Restart.Visible=false;
-            timer.Enabled = true;
-            lose = false;
-            countCoins= 0;
-            labelCoins.Text = "Coins :" + countCoins.ToString();
-            coin.Top = -500;
+           
+            { enemy1.Top = -130;
+                enemy2.Top = -400;
+                LabelLose.Visible = false;
+                Restart.Visible = false;
+                timer.Enabled = true;
+                lose = false;
+                countCoins = 0;
+                labelCoins.Text = "Coins :" + countCoins.ToString();
+                coin.Top = -500;
+                labelChoose.Visible=false;
+                Easy.Visible = false;
+                Hard.Visible = false;
+            }
         }
     }
 }

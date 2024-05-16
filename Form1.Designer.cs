@@ -52,13 +52,12 @@
             // 
             // timer
             // 
-            this.timer.Enabled = true;
             this.timer.Interval = 15;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // enemy1
             // 
-            this.enemy1.BackColor = System.Drawing.Color.Transparent;
+            this.enemy1.BackColor = System.Drawing.Color.DimGray;
             this.enemy1.BackgroundImage = global::SchoolProjectC_.Properties.Resources.Carrenemy;
             this.enemy1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.enemy1.Image = global::SchoolProjectC_.Properties.Resources.Carrenemy;
@@ -71,7 +70,7 @@
             // 
             // car
             // 
-            this.car.BackColor = System.Drawing.Color.Transparent;
+            this.car.BackColor = System.Drawing.Color.DimGray;
             this.car.BackgroundImage = global::SchoolProjectC_.Properties.Resources.Car;
             this.car.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.car.Location = new System.Drawing.Point(366, 522);
@@ -100,7 +99,7 @@
             // 
             // enemy2
             // 
-            this.enemy2.BackColor = System.Drawing.Color.Transparent;
+            this.enemy2.BackColor = System.Drawing.Color.DimGray;
             this.enemy2.BackgroundImage = global::SchoolProjectC_.Properties.Resources.Carrenemy;
             this.enemy2.Image = global::SchoolProjectC_.Properties.Resources.Carrenemy;
             this.enemy2.Location = new System.Drawing.Point(582, -400);
@@ -185,6 +184,7 @@
             this.Easy.TabIndex = 12;
             this.Easy.Text = "Easy";
             this.Easy.UseVisualStyleBackColor = false;
+            this.Easy.Click += new System.EventHandler(this.Easy_Click);
             // 
             // Hard
             // 
@@ -199,6 +199,7 @@
             this.Hard.TabIndex = 13;
             this.Hard.Text = "Hard";
             this.Hard.UseVisualStyleBackColor = false;
+            this.Hard.Click += new System.EventHandler(this.Hard_Click);
             // 
             // Form1
             // 
